@@ -8,12 +8,15 @@ from PyInquirer import prompt
 import o365
 import music
 
-# config = dotenv_values(".env")
 
-
-@click.group(invoke_without_command=True)
+@click.group()
 def main():
     """ A CLI for getting employment tasks done. """
+
+
+@main.command("p")
+def run_interactive_prompt():
+    """An interactive prompt to run through all available options."""
     questions = [
         {
             "type": "list",

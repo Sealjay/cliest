@@ -14,8 +14,9 @@ from sqlalchemy.orm import relationship
 from dotenv import dotenv_values
 import pyodbc
 from sqlalchemy.sql.sqltypes import DateTime
+import misc
 
-config = dotenv_values(".env")
+config = misc.get_relative_config()
 server = config["DB_SERVER"]
 database = config["DB_NAME"]
 username = config["DB_ADMIN_LOGIN"]

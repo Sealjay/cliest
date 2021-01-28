@@ -1,5 +1,14 @@
 """Miscellaneous functions used by other modules."""
 import time
+import os
+from dotenv import dotenv_values
+
+
+def get_relative_config():
+    dir = os.path.dirname(__file__)
+    filename = os.path.join(dir, ".env")
+    config = dotenv_values(filename)
+    return config
 
 
 def find_item(find_key, find_value, search_dictionary):

@@ -7,13 +7,8 @@ from tabulate import tabulate
 from PyInquirer import prompt
 import misc
 
-API_URL = (
-    "https://prod-119.westus.logic.azure.com:443/"
-    "workflows/00335445955040c49128a6b2b0caf26c/"
-    "triggers/manual/paths/invoke?api-version=2016-06-01"
-    "&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=apm9AC5jDLD"
-    "g5djylrY7Xz6OzcL34vb6he0sqRxfqfo"
-)
+config = misc.get_relative_config()
+API_URL = config["API_URL"]
 
 
 def print_tabulated_calendar():
