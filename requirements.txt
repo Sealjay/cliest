@@ -1,4 +1,6 @@
 click
 pyinquirer
 tabulate
-dotenv
+python-dotenv
+PyODBC
+sqlalchemy

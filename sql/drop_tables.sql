@@ -1,0 +1,1 @@
+DROP TABLE news_article, news_topic, tweet_hashtag_association, tweet_hashtags, tweets
