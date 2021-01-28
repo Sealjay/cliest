@@ -26,13 +26,6 @@ pyodbc.pooling = False
 # declarative base class
 Base = declarative_base()
 
-tweet_hashtag_association_table = Table(
-    "tweet_hashtag_association",
-    Base.metadata,
-    Column("tweet_id", Integer, ForeignKey("tweets.id")),
-    Column("hashtag_id", Integer, ForeignKey("tweet_hashtags.id")),
-)
-
 
 class Tweets(Base):
     __tablename__ = "tweets"
@@ -42,35 +35,12 @@ class Tweets(Base):
     is_posted = Column(Boolean)
     is_scheduled = Column(Boolean)
     schedule_date = Column(DateTime)
-    tweet_hashtags = relationship(
-        "Tweet_Hashtags",
-        secondary=tweet_hashtag_association_table,
-        back_populates="tweet_hashtags",
-    )
 
 
 class Tweet_Hashtags(Base):
     __tablename__ = "tweet_hashtags"
     id = Column(Integer, primary_key=True)
     hashtag = Column(String)
-    tweets = relationship(
-        "Tweets", secondary=tweet_hashtag_association_table, back_populates="tweets"
-    )
-
-
-class News_Article(Base):
-    __tablename__ = "news_article"
-    id = Column(Integer, primary_key=True)
-    article_name = Column(String)
-    article_url = Column(String)
-    related_topic_id = Column(Integer, ForeignKey("news_topic.id"))
-    related_topic = relationship("News_Topic")
-
-
-class News_Topics(Base):
-    __tablename__ = "news_topic"
-    id = Column(Integer, primary_key=True)
-    topic_name = Column(String)
 
 
 def connect_to_database():

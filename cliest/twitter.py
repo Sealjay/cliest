@@ -6,44 +6,93 @@ from schema import (
     Base,
     Tweet_Hashtags,
     Tweets,
-    News_Article,
-    News_Topics,
-    tweet_hashtag_association_table,
 )
+from sqlalchemy.orm import sessionmaker
+from PyInquirer import prompt
 import misc
 
 config = misc.get_relative_config()
 
 
-def get_next_tweet():
-    return None
+def create_session():
+    engine = connect_to_database()
+    Session = sessionmaker()
+    Session.configure(bind=engine)
+    session = Session()
+    return session
 
 
-def post_tweet(text):
-    return None
+def interactive_prompt_loop():
+    session = create_session()
+
+    if not "id" in prompt_output:
+        click.secho("ID not found, cancelling.", fg="bright_red")
+
+
+def interactive_prompt(session):
+    """questions = [
+        {
+            "type": "list",
+            "message": "What do you want to do?",
+            "name": "function",
+            "choices": [
+                {
+                    "name": "Add Tweet from Scratch",
+                    "value": o365.print_tabulated_calendar,
+                },
+                {
+                    "name": "Open Calendar (open-cal)",
+                    "value": o365.prompt_to_open_calendar_event,
+                },
+                {"name": "View Tasks", "value": o365.get_tasks},
+                {"name": "Open Music", "value": music.prompt_to_select_station},
+            ],
+        }
+    ]"""
+    prompt_output = prompt(questions)
+    if "function" in prompt_output:
+        prompt_output["function"]()
+
+
+def create_plain_tweet(session):
+    pass
+
+
+def prompt_hashtags(tweet_text):
+    pass
+
+
+def prompt_by_term():
+    pass
+
+
+def prompt_by_trending():
+    pass
+
+
+def prompt_by_category():
+    pass
+
+
+def add_tweet_to_schedule(text, session):
+    new_tweet = Tweets(text=text)
+    session.add(new_tweet)
+    session.commit()
+    return new_tweet
 
 
 def find_news_articles(topic):
     return None
 
 
-def suggest_hashtags_for_topic(topic_id, tweet_text):
-    return None
+def add_hashtags(hashtag_text, session):  # , session):
+    new_hashtag = Tweet_Hashtags(hashtag=hashtag_text)
+    session.add(new_hashtag)
+    session.commit()
+    return new_hashtag
 
 
-def add_suggested_topic():
-    return None
-
-
-def delete_suggested_topic(topic_id):
-    return None
-
-
-def add_hashtags(topic_id):
-    return None
-
-
-def delete_hashtags(topic_id, hashtag_id):
+def delete_hashtags(hashtag_id):
     return None
 
 
