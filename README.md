@@ -1,5 +1,9 @@
 # Cliest
 
+> **⚠️ ARCHIVED**: This repository is archived and no longer maintained. This was a personal project to build a Python CLI for productivity automation.
+
+> **📝 Blog**: See more projects at [sealjay.com](https://sealjay.com)
+
 This CLI aspires to automate common employment tasks for developers in knowledge worker roles, including:
 - Calendar management
 - Twitter posts (including searching for articles via news api)
